@@ -1,0 +1,27 @@
+%input#name{ :type => "text", :value => "name" }
+%input#text{ :type => "text", :value => "text" }
+%div#box
+:javascript
+  $(document).ready(function() {
+    $("input").focus(function() {
+      $(this).val("");
+    });
+
+    var input = $("#text");
+    input.keydown(function(event) {
+      if (event.keyCode == 13) {
+        var name = $("#name").val();
+        var text = input.val();
+        input.val("");
+
+        $.post("/", { name: name, text: text });
+      }
+    });
+
+    var box = document.getElementById("box");
+
+    var server = new Pusher('89e79827df238c1a2c1a', 'chat');
+    server.bind('message', function(message) {
+      $("<p/>").text(message.name + ": " + message.text).prependTo($("#box"));
+    });
+  });

@@ -1,0 +1,18 @@
+- @title = "Pusher"
+!!! 5
+%html{ :lang => "ja" }
+  %head
+    %title= @title
+    %meta{ :charset => "UTF-8" }
+    %script{ :src => "http://code.jquery.com/jquery-1.4.2.min.js" }
+    %script{ :src => "http://js.pusherapp.com/1.4/pusher.min.js" }
+    :css
+      *     { margin: 0; padding: 0; }
+      body  { padding: 10px; }
+      span  { padding:  5px; }
+      input { font-size: 150%; }
+      #name { width:  8%; }
+      #text { width: 90%; }
+  %body
+    %h1= @title
+    = yield
